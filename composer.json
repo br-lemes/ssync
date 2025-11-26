@@ -1,0 +1,15 @@
+{
+    "autoload": {
+        "psr-4": {
+            "SSync\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/console": "^7.3",
+        "symfony/filesystem": "^7.3",
+        "symfony/process": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.4"
+    }
+}
