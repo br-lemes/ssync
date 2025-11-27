@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace SSync\Commands;
 
 use SSync\Traits\ConfigTrait;
+use SSync\Traits\ConstTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -16,8 +17,9 @@ use Symfony\Component\Process\Process;
 class AddCommand extends BaseCommand
 {
     use ConfigTrait;
+    use ConstTrait;
 
-    private string $description = 'TODO: add description';
+    private string $description = 'Adds a file to the diff store by creating a diff.';
 
     public function complete(
         CompletionInput $input,
@@ -54,15 +56,11 @@ class AddCommand extends BaseCommand
     {
         $this->setName('add')
             ->setDescription($this->description)
-            ->addArgument(
-                'config',
-                InputArgument::REQUIRED,
-                'TODO: config description',
-            )
+            ->addArgument('config', InputArgument::REQUIRED, self::CONFIG_NAME)
             ->addArgument(
                 'file',
                 InputArgument::REQUIRED,
-                'TODO: file description',
+                'The path to the file to add.',
             );
     }
 

@@ -6,6 +6,7 @@ namespace SSync\Commands;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SSync\Traits\ConfigTrait;
+use SSync\Traits\ConstTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -16,8 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ListCommand extends BaseCommand
 {
     use ConfigTrait;
+    use ConstTrait;
 
-    private string $description = 'TODO: list description';
+    private string $description = 'Lists the files in the diff store.';
 
     public function complete(
         CompletionInput $input,
@@ -54,11 +56,7 @@ class ListCommand extends BaseCommand
     {
         $this->setName('ls')
             ->setDescription($this->description)
-            ->addArgument(
-                'config',
-                InputArgument::REQUIRED,
-                'TODO: config description',
-            );
+            ->addArgument('config', InputArgument::REQUIRED, self::CONFIG_NAME);
     }
 
     function exec(InputInterface $input, OutputInterface $output): int

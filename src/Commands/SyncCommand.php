@@ -6,6 +6,7 @@ namespace SSync\Commands;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SSync\Traits\ConfigTrait;
+use SSync\Traits\ConstTrait;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,8 +18,9 @@ use Symfony\Component\Process\Process;
 class SyncCommand extends BaseCommand
 {
     use ConfigTrait;
+    use ConstTrait;
 
-    private string $description = 'TODO: sync description';
+    private string $description = 'Synchronizes the two directories, ignoring the files in the diff store.';
 
     public function complete(
         CompletionInput $input,
@@ -55,15 +57,11 @@ class SyncCommand extends BaseCommand
     {
         $this->setName('sync')
             ->setDescription($this->description)
-            ->addArgument(
-                'config',
-                InputArgument::REQUIRED,
-                'TODO: config description',
-            )
+            ->addArgument('config', InputArgument::REQUIRED, self::CONFIG_NAME)
             ->addArgument(
                 'external',
                 InputArgument::IS_ARRAY,
-                'TODO: external description',
+                'Additional arguments to pass to the unison-gui command.',
             );
     }
 

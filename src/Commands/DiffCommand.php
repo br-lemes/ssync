@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace SSync\Commands;
 
 use SSync\Traits\ConfigTrait;
+use SSync\Traits\ConstTrait;
 use SSync\Traits\HasExecutable;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -16,9 +17,10 @@ use Symfony\Component\Process\Process;
 class DiffCommand extends BaseCommand
 {
     use ConfigTrait;
+    use ConstTrait;
     use HasExecutable;
 
-    private string $description = 'TODO: diff description';
+    private string $description = 'Shows the difference between the two files.';
 
     public function complete(
         CompletionInput $input,
@@ -55,15 +57,11 @@ class DiffCommand extends BaseCommand
     {
         $this->setName('diff')
             ->setDescription($this->description)
-            ->addArgument(
-                'config',
-                InputArgument::REQUIRED,
-                'TODO: config description',
-            )
+            ->addArgument('config', InputArgument::REQUIRED, self::CONFIG_NAME)
             ->addArgument(
                 'file',
                 InputArgument::REQUIRED,
-                'TODO: file description',
+                'The path to the file to compare.',
             )
             ->addOption(
                 'inline',

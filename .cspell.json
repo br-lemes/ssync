@@ -2,5 +2,13 @@
     "ignorePaths": ["config/*", "coverage/*", "vendor/*"],
     "import": ["@cspell/dict-pt-br/cspell-ext.json"],
     "language": "en,pt-br",
-    "words": ["autoload", "breno", "difft", "Difftastic", "phpunit", "symfony"]
+    "words": [
+        "autoload",
+        "breno",
+        "difft",
+        "difftastic",
+        "phpunit",
+        "ssync",
+        "symfony"
+    ]
 }
