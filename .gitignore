@@ -1,7 +1,10 @@
 /.phpunit.result.cache
+/.windsurf/rules
+/GEMINI.md
 /bun.lock
 /composer.lock
-/config
+/config/*
 /coverage
 /node_modules
 /vendor
+!/config/test

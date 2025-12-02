@@ -77,7 +77,6 @@ class AddCommand extends BaseCommand
         $diff = $process->getOutput();
         if (!$diff) {
             $this->error('No changes.');
-            return Command::FAILURE;
         }
 
         $diffFile = "{$config['configDir']}/diffs/$file";

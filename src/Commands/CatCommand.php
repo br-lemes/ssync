@@ -68,8 +68,7 @@ class CatCommand extends BaseCommand
         $file = $input->getArgument('file');
         $diffFile = "{$config['configDir']}/diffs/$file";
         if (!file_exists($diffFile)) {
-            $this->error('Diff not found.');
-            return Command::FAILURE;
+            $this->error(self::DIFF_NOT_FOUND);
         }
         if (!posix_isatty(STDOUT) || !$this->hasExecutable('bat')) {
             $output->write(file_get_contents($diffFile));

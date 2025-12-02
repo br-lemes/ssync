@@ -9,6 +9,8 @@
         "difftastic",
         "phpunit",
         "ssync",
-        "symfony"
+        "symfony",
+        "testsuite",
+        "testsuites"
     ]
 }

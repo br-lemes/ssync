@@ -33,23 +33,6 @@ class ListCommand extends BaseCommand
                 ),
             );
         }
-        if ($input->mustSuggestArgumentValuesFor('file')) {
-            $config = $this->getConfig($input->getArgument('config'));
-            $currentValue = $input->getCompletionValue();
-            $files = glob("{$config['root1']}/$currentValue*");
-            foreach ($files as $file) {
-                $path = substr($file, strlen($config['root1']) + 1);
-                $root2 = "{$config['root2']}/$path";
-                if (!file_exists($root2)) {
-                    continue;
-                }
-                if (is_dir($file)) {
-                    $suggestions->suggestValue("$path/");
-                } else {
-                    $suggestions->suggestValue($path);
-                }
-            }
-        }
     }
 
     protected function configure(): void
@@ -64,8 +47,7 @@ class ListCommand extends BaseCommand
         $config = $this->getConfig($input->getArgument('config'));
         $dir = "{$config['configDir']}/diffs";
         if (!is_dir($dir)) {
-            $this->error("Directory $dir does not exist");
-            return Command::FAILURE;
+            $this->error(sprintf(self::DIRECTORY_NOT_EXISTS, $dir));
         }
 
         $files = new RecursiveIteratorIterator(
